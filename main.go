@@ -24,7 +24,7 @@ func main() {
 		serveWs(c.Writer, c.Request, roomId)
 	})
 
-	port := fmt.Sprintf(":%s", os.Getenv("PORT"))
+	port := fmt.Sprintf("0.0.0.0:%s", os.Getenv("PORT"))
 	err = router.Run(port)
 	if err != nil {
 		fmt.Printf("%v", err)
