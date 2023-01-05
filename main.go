@@ -7,13 +7,12 @@ import (
 
 func main() {
 	go h.run()
-
 	router := gin.New()
-	router.LoadHTMLFiles("index.html")
+	//router.LoadHTMLFiles("index.html")
 
-	router.GET("/room/:roomId", func(c *gin.Context) {
+	/*router.GET("/room/:roomId", func(c *gin.Context) {
 		c.HTML(200, "index.html", nil)
-	})
+	})*/
 
 	router.GET("/ws/:roomId", func(c *gin.Context) {
 		roomId := c.Param("roomId")
@@ -21,5 +20,9 @@ func main() {
 		serveWs(c.Writer, c.Request, roomId)
 	})
 
-	router.Run(":8080")
+	err := router.Run(":8080")
+	if err != nil {
+		fmt.Printf("%v", err)
+		return
+	}
 }
