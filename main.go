@@ -12,10 +12,6 @@ func main() {
 	router.LoadHTMLFiles("index.html")
 
 	router.GET("/room/:roomId", func(c *gin.Context) {
-		roomId := c.Param("roomId")
-
-		fmt.Printf("roooommmm = %v\n", roomId)
-
 		c.HTML(200, "index.html", nil)
 	})
 

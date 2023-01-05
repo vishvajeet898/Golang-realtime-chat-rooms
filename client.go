@@ -97,7 +97,7 @@ func serveWs(w http.ResponseWriter, r *http.Request, roomId string) {
 	fmt.Print(roomId)
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		log.Println(err.Error())
+		fmt.Printf("Errr = " + err.Error())
 		return
 	}
 	c := &connection{send: make(chan []byte, 256), ws: ws}
