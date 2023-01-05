@@ -3,9 +3,13 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	"os"
 )
 
 func main() {
+	err := godotenv.Load(".env")
+
 	go h.run()
 	router := gin.New()
 	//router.LoadHTMLFiles("index.html")
@@ -20,7 +24,8 @@ func main() {
 		serveWs(c.Writer, c.Request, roomId)
 	})
 
-	err := router.Run(":8080")
+	port := fmt.Sprintf(":%s", os.Getenv("PORT"))
+	err = router.Run(port)
 	if err != nil {
 		fmt.Printf("%v", err)
 		return
