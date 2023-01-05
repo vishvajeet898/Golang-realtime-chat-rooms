@@ -20,8 +20,11 @@ func main() {
 
 	router.GET("/ws/:roomId", func(c *gin.Context) {
 		roomId := c.Param("roomId")
+		fmt.Println("The URL: ", c.Request.Host+c.Request.URL.Path)
+
 		fmt.Printf("roooommmm = %v\n", roomId)
 		serveWs(c.Writer, c.Request, roomId)
+
 	})
 
 	port := fmt.Sprintf("0.0.0.0:%s", os.Getenv("PORT"))
